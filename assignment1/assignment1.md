@@ -3,7 +3,7 @@
 
 ```
 hadoop jar target/assignment1-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.DemoWordCount \
--input bible+shakes.nopunc.gz -output wc -numReducers 5
+-input bible+shakes.nopunc -output wc -numReducers 5
 ```
 
 ######Code for Questions:
