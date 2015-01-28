@@ -76,3 +76,12 @@ The number of unique terms in each output file:
 31940 total
 ```
 
+#Issue
+When I was doing the assignment, I encountered an issue that the hadoop instruction cannot be excuted. I find out a solution which is deleting the `LICENSE` file. On stackoverflow, a person said that the `license` folder and `LICENSE` file has conflict in a case-insensitive file system. So here is the code I used to delete the `LICENSE` file in the jar.
+
+
+```
+zip -d target/assignment1-1.0-SNAPSHOT-fatjar.jar META-INF/LICENSE
+```
+
+Stackoverflow [link] (http://stackoverflow.com/questions/10522835/hadoop-java-io-ioexception-mkdirs-failed-to-create-some-path/11379938#11379938)
