@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/Wind/Documents/Maryland/2015Spring/INST767/Dev/WarmUp/bigdata-assignments/assignment1"/>
+    <property name="user.dir" value="/Users/Wind/Documents/Maryland/2015Spring/INST767/Dev/Test/WarmUp/bigdata-assignments/assignment1"/>
     <property name="java.runtime.version" value="1.7.0_75-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_75.jdk/Contents/Home/jre/lib/endorsed"/>
