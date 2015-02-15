@@ -313,7 +313,7 @@ public class PMIStripes extends Configured implements Tool {
     job.setOutputValueClass(IntWritable.class);
 
     job.setMapperClass(MyFirstMapper.class);
-    job.setCombinerClass(MyFirstReducer.class);
+    // job.setCombinerClass(MyFirstReducer.class);
     job.setReducerClass(MyFirstReducer.class);
     job.setPartitionerClass(MyFirstPartitioner.class);
 
@@ -339,14 +339,14 @@ public class PMIStripes extends Configured implements Tool {
     job2.setOutputValueClass(DoubleWritable.class);
 
     job2.setMapperClass(MySecondMapper.class);
-    job2.setCombinerClass(MySecondCombiner.class);
+    // job2.setCombinerClass(MySecondCombiner.class);
     job2.setReducerClass(MySecondReducer.class);
     job2.setPartitionerClass(MyPartitioner.class);
     
     long startTime = System.currentTimeMillis();
     job.waitForCompletion(true);
     job2.waitForCompletion(true);
-    FileSystem.get(getConf()).delete(interDir, true);
+    // FileSystem.get(getConf()).delete(interDir, true);
     System.out.println("Job Finished in " + (System.currentTimeMillis() - startTime) / 1000.0 + " seconds");
 
     return 0;
