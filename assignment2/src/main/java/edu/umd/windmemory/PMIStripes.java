@@ -298,14 +298,14 @@ public class PMIStripes extends Configured implements Tool {
     job.setJobName(PMIPairs.class.getSimpleName());
     job.setJarByClass(PMIPairs.class);
     // Delete the output directory if it exists already.
-    Path interDir = new Path("temp");
+    Path interDir = new Path(outputPath + "/temp");
     FileSystem.get(getConf()).delete(interDir, true);
 
     // job.setNumMapTasks(reduceTasks);
     job.setNumReduceTasks(reduceTasks);
 
     FileInputFormat.setInputPaths(job, new Path(inputPath));
-    FileOutputFormat.setOutputPath(job, new Path("temp"));
+    FileOutputFormat.setOutputPath(job, new Path(outputPath + "/temp"));
 
     job.setMapOutputKeyClass(Text.class);
     job.setMapOutputValueClass(IntWritable.class);
@@ -324,7 +324,7 @@ public class PMIStripes extends Configured implements Tool {
     Path outputDir = new Path(outputPath);
     FileSystem.get(getConf()).delete(outputDir, true);
 
-    job2.getConfiguration().set("path", new Path("temp"));
+    job2.getConfiguration().set("path", new Path(outputPath + "/temp"));
     job2.getConfiguration().setInt("num", reduceTasks);
 
 
