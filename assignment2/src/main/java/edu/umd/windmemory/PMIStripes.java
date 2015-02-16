@@ -298,7 +298,7 @@ public class PMIStripes extends Configured implements Tool {
     job.setJobName(PMIPairs.class.getSimpleName());
     job.setJarByClass(PMIPairs.class);
     // Delete the output directory if it exists already.
-    Path interDir = new Path("temp");
+    Path interDir = new Path("./temp");
     FileSystem.get(getConf()).delete(interDir, true);
 
     // job.setNumMapTasks(reduceTasks);
@@ -345,7 +345,9 @@ public class PMIStripes extends Configured implements Tool {
     
     long startTime = System.currentTimeMillis();
     job.waitForCompletion(true);
-    job2.addCacheFile(interDir.toUri());
+    job2.addCacheFile(interDir);
+      
+    }oUri());
     job2.waitForCompletion(true);
     // FileSystem.get(getConf()).delete(interDir, true);
     System.out.println("Job Finished in " + (System.currentTimeMillis() - startTime) / 1000.0 + " seconds");
