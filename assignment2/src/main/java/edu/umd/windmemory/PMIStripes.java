@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.File;
+import java.net.URI;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -34,6 +36,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -50,6 +53,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+
 import org.apache.log4j.Logger;
 
 import tl.lin.data.map.HMapStIW;
@@ -172,33 +176,46 @@ public class PMIStripes extends Configured implements Tool {
     private HashMap<String, Integer> dict = new HashMap<String, Integer>();
     
     @Override
-    protected void setup(Context context) {
-      Configuration conf = context.getConfiguration();
-      Integer num = Integer.parseInt(conf.get("num"));
-      String path = conf.get("path");
-      BufferedReader br = null;
-      for (int i = 0; i < num; i++) {
-        try {
-          br = new BufferedReader(new FileReader("./temp/part-r-0000" + i)); 
-          String line = br.readLine();
-          
-          Integer val;
-          while (line != null) {
-            String[] pair = line.split("\t");
-            val = Integer.parseInt(pair[1]);
-            dict.put(pair[0], val);
-            line = br.readLine();
-          }
-        } catch (IOException e) {
-          e.printStackTrace();
-        } finally {
-          try {
-            br.close();
-          } catch (IOException e) {
-            e.printStackTrace();
+    protected void setup(Context context) 
+      throws IOException, InterruptedException {
+      if (context.getCacheFiles() != null) {
+        URI inputURI = context.getCacheFiles()[0];
+        if (inputURI != null) {
+          String dataStream = FileUtils.readFileToString(new File("./part-r-00000"));
+          String[] terms = dataStream.split("\\s+");
+
+          for (int i = 0; i < terms.length; i+=2) {
+            dict.put(terms[i], Integer.parseInt(terms[i + 1]));
           }
         }
       }
+
+      // Configuration conf = context.getConfiguration();
+      // Integer num = Integer.parseInt(conf.get("num"));
+      // String path = conf.get("path");
+      // BufferedReader br = null;
+      // for (int i = 0; i < num; i++) {
+      //   try {
+      //     br = new BufferedReader(new FileReader("./temp/part-r-0000" + i)); 
+      //     String line = br.readLine();
+          
+      //     Integer val;
+      //     while (line != null) {
+      //       String[] pair = line.split("\t");
+      //       val = Integer.parseInt(pair[1]);
+      //       dict.put(pair[0], val);
+      //       line = br.readLine();
+      //     }
+      //   } catch (IOException e) {
+      //     e.printStackTrace();
+      //   } finally {
+      //     try {
+      //       br.close();
+      //     } catch (IOException e) {
+      //       e.printStackTrace();
+      //     }
+      //   }
+      // }
     }
 
     @Override
@@ -298,11 +315,11 @@ public class PMIStripes extends Configured implements Tool {
     job.setJobName(PMIPairs.class.getSimpleName());
     job.setJarByClass(PMIPairs.class);
     // Delete the output directory if it exists already.
-    Path interDir = new Path("./temp");
+    Path interDir = new Path("temp");
     FileSystem.get(getConf()).delete(interDir, true);
 
     // job.setNumMapTasks(reduceTasks);
-    job.setNumReduceTasks(reduceTasks);
+    job.setNumReduceTasks(1);
 
     FileInputFormat.setInputPaths(job, new Path(inputPath));
     FileOutputFormat.setOutputPath(job, interDir);
@@ -344,10 +361,8 @@ public class PMIStripes extends Configured implements Tool {
     job2.setPartitionerClass(MyPartitioner.class);
     
     long startTime = System.currentTimeMillis();
+    job2.addCacheFile(new URI("temp/part-r-00000"));
     job.waitForCompletion(true);
-    // job2.addCacheFile(interDir);
-      
-    
     job2.waitForCompletion(true);
     // FileSystem.get(getConf()).delete(interDir, true);
     System.out.println("Job Finished in " + (System.currentTimeMillis() - startTime) / 1000.0 + " seconds");
