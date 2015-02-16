@@ -345,9 +345,9 @@ public class PMIStripes extends Configured implements Tool {
     
     long startTime = System.currentTimeMillis();
     job.waitForCompletion(true);
-    job2.addCacheFile(interDir);
+    // job2.addCacheFile(interDir);
       
-    }oUri());
+    
     job2.waitForCompletion(true);
     // FileSystem.get(getConf()).delete(interDir, true);
     System.out.println("Job Finished in " + (System.currentTimeMillis() - startTime) / 1000.0 + " seconds");
