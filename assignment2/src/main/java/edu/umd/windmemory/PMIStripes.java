@@ -330,7 +330,7 @@ public class PMIStripes extends Configured implements Tool {
     job.setOutputValueClass(IntWritable.class);
 
     job.setMapperClass(MyFirstMapper.class);
-    job.setCombinerClass(MyFirstReducer.class);
+    // job.setCombinerClass(MyFirstReducer.class);
     job.setReducerClass(MyFirstReducer.class);
     job.setPartitionerClass(MyFirstPartitioner.class);
 
@@ -356,7 +356,7 @@ public class PMIStripes extends Configured implements Tool {
     job2.setOutputValueClass(DoubleWritable.class);
 
     job2.setMapperClass(MySecondMapper.class);
-    job2.setCombinerClass(MySecondCombiner.class);
+    // job2.setCombinerClass(MySecondCombiner.class);
     job2.setReducerClass(MySecondReducer.class);
     job2.setPartitionerClass(MyPartitioner.class);
     
