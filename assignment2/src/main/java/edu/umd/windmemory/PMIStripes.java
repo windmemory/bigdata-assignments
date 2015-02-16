@@ -341,8 +341,8 @@ public class PMIStripes extends Configured implements Tool {
     Path outputDir = new Path(outputPath);
     FileSystem.get(getConf()).delete(outputDir, true);
 
-    job2.getConfiguration().set("path", interDir.toString());
-    job2.getConfiguration().setInt("num", reduceTasks);
+    // job2.getConfiguration().set("path", interDir.toString());
+    // job2.getConfiguration().setInt("num", reduceTasks);
 
 
     job2.setNumReduceTasks(reduceTasks);
