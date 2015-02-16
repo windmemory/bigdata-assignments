@@ -33,3 +33,46 @@ The three words has the highest PMI with "love" are:
 
 (lysander, love)	-4.371847044880222
 ```
+
+####Question 6
+The Stripes Solution ran 5190 sec
+
+####Question 7
+
+
+####Question 8
+
+
+####Question 9
+The highest PMI pair is `(from:0, start:0)	-0.9999999999999998`. This might because that these two words only appears together, so the PMI value is very high.
+
+####Question 10
+The three words has the highest PMI with "cloud" are:
+```
+(nebula., cloud)	-2.5360991146789997
+
+(thunderstorm, cloud)	-2.7888751157754164
+
+(convection, cloud)	-2.8872957198087117
+```
+
+The three words has the highest PMI with "love" are:
+```
+(madly, love)	-3.0484418035504044
+
+(hurries, love)	-3.162385155857241
+
+(potion, love)	-3.1867445017166856
+```
+
+
+
+-----
+####Something
+This assignment is kind of suffering for me. I developed on my own Mac first, for the reason that my Mac runs faster than the cluster and VM. After I finish the code and ran perfectly on my Mac, I moved to the cluster, then I found that because the environment is different, the way I read side data doesn't work on the cluster. This is a disaster for me. I have to rewrite the code that read the side data. 
+
+Besides that, I am not very familiar with java, instead, I am familiar with c, c++, objective-c, swift. So this week for me is like "learning java within a week". Because new to java, so many code is not wrote in best practice, I think this might be the reason that my code doesn't run very fast. And I am wondering how to write the code, so the code could finish the job within 5 minutes. It feels like using hadoop, at least on local machine and the cluster, is not faster than just normal programming. I really want to learn some tricks to make hadoop more efficient.
+
+My code running the big input file needs several hours, so I don't have enough time to run the code without combiner.
+
+But still, I feel that I really learned a lot. Love this class!
