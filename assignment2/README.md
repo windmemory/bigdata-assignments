@@ -35,13 +35,13 @@ The three words has the highest PMI with "love" are:
 ```
 
 ####Question 6
-The Stripes Solution ran 5190 sec
+The Stripes Solution ran 5190 sec, the Pairs solution ran 27284 sec.
 
 ####Question 7
 
 
 ####Question 8
-
+The total number of output is 38210424, that means there are 19105212 distinct pairs that I extracted. 
 
 ####Question 9
 The highest PMI pair is `(from:0, start:0)	-0.9999999999999998`. This might because that these two words only appears together, so the PMI value is very high.
