@@ -179,7 +179,7 @@ public class PMIStripes extends Configured implements Tool {
       BufferedReader br = null;
       for (int i = 0; i < num; i++) {
         try {
-          br = new BufferedReader(new FileReader(path + "/part-r-0000" + i)); 
+          br = new BufferedReader(new FileReader("./temp/part-r-0000" + i)); 
           String line = br.readLine();
           
           Integer val;
