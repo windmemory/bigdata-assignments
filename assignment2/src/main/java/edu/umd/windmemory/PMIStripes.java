@@ -179,7 +179,7 @@ public class PMIStripes extends Configured implements Tool {
       BufferedReader br = null;
       for (int i = 0; i < num; i++) {
         try {
-          br = new BufferedReader(new FileReader(Path(path + "/part-r-0000" + i)); 
+          br = new BufferedReader(new FileReader(path + "/part-r-0000" + i)); 
           String line = br.readLine();
           
           Integer val;
@@ -298,14 +298,14 @@ public class PMIStripes extends Configured implements Tool {
     job.setJobName(PMIPairs.class.getSimpleName());
     job.setJarByClass(PMIPairs.class);
     // Delete the output directory if it exists already.
-    Path interDir = new Path(outputPath + "/temp");
+    Path interDir = new Path("temp");
     FileSystem.get(getConf()).delete(interDir, true);
 
     // job.setNumMapTasks(reduceTasks);
     job.setNumReduceTasks(reduceTasks);
 
     FileInputFormat.setInputPaths(job, new Path(inputPath));
-    FileOutputFormat.setOutputPath(job, new Path(outputPath + "/temp"));
+    FileOutputFormat.setOutputPath(job, interDir);
 
     job.setMapOutputKeyClass(Text.class);
     job.setMapOutputValueClass(IntWritable.class);
@@ -313,7 +313,7 @@ public class PMIStripes extends Configured implements Tool {
     job.setOutputValueClass(IntWritable.class);
 
     job.setMapperClass(MyFirstMapper.class);
-    // job.setCombinerClass(MyFirstReducer.class);
+    job.setCombinerClass(MyFirstReducer.class);
     job.setReducerClass(MyFirstReducer.class);
     job.setPartitionerClass(MyFirstPartitioner.class);
 
@@ -324,7 +324,7 @@ public class PMIStripes extends Configured implements Tool {
     Path outputDir = new Path(outputPath);
     FileSystem.get(getConf()).delete(outputDir, true);
 
-    job2.getConfiguration().set("path", new Path(outputPath + "/temp"));
+    job2.getConfiguration().set("path", interDir.toString());
     job2.getConfiguration().setInt("num", reduceTasks);
 
 
@@ -339,12 +339,13 @@ public class PMIStripes extends Configured implements Tool {
     job2.setOutputValueClass(DoubleWritable.class);
 
     job2.setMapperClass(MySecondMapper.class);
-    // job2.setCombinerClass(MySecondCombiner.class);
+    job2.setCombinerClass(MySecondCombiner.class);
     job2.setReducerClass(MySecondReducer.class);
     job2.setPartitionerClass(MyPartitioner.class);
     
     long startTime = System.currentTimeMillis();
     job.waitForCompletion(true);
+    job2.addCacheFile(interDir.toUri());
     job2.waitForCompletion(true);
     // FileSystem.get(getConf()).delete(interDir, true);
     System.out.println("Job Finished in " + (System.currentTimeMillis() - startTime) / 1000.0 + " seconds");
