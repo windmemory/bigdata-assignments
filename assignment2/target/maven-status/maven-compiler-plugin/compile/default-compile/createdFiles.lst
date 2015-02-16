@@ -1,6 +1,10 @@
 edu/umd/windmemory/PMIStripes$MyFirstReducer.class
 edu/umd/windmemory/PMIStripes$MyFirstPartitioner.class
+edu/umd/windmemory/PMIPairsR$MySecondCombiner.class
 edu/umd/windmemory/PMIPairs$MyFirstMapper.class
+edu/umd/windmemory/PMIPairsR$MySecondReducer.class
+edu/umd/windmemory/PMIPairsR$MyPartitioner.class
+edu/umd/windmemory/PMIPairsR$MyFirstMapper.class
 edu/umd/windmemory/PMIPairs$MyPartitioner.class
 edu/umd/windmemory/PMIStripes$MySecondCombiner.class
 edu/umd/windmemory/PMIPairs$MySecondReducer.class
@@ -9,9 +13,13 @@ edu/umd/windmemory/PMIStripes$MySecondMapper.class
 edu/umd/windmemory/App.class
 edu/umd/windmemory/PMIStripes$MySecondReducer.class
 edu/umd/windmemory/PMIStripes$MyFirstMapper.class
+edu/umd/windmemory/PMIPairsR$MyFirstPartitioner.class
 edu/umd/windmemory/PMIPairs$MyFirstReducer.class
+edu/umd/windmemory/PMIPairsR$MyFirstReducer.class
 edu/umd/windmemory/PMIPairs$MyFirstPartitioner.class
+edu/umd/windmemory/PMIPairsR.class
 edu/umd/windmemory/PMIPairs$MySecondCombiner.class
 edu/umd/windmemory/PMIStripes.class
 edu/umd/windmemory/PMIPairs.class
 edu/umd/windmemory/PMIStripes$MyPartitioner.class
+edu/umd/windmemory/PMIPairsR$MySecondMapper.class
