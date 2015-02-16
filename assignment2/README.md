@@ -35,7 +35,9 @@ The three words has the highest PMI with "love" are:
 ```
 
 ####Question 6
-The Stripes Solution ran 5190 sec, the Pairs solution ran 27284 sec.
+The Stripes Solution ran 5190 sec, the Pairs solution ran 27284 sec. 
+
+After I've improved the algorithm of the second mapper, the Pairs solution ran 12656 sec.
 
 ####Question 7
 The stripes solution ran 2576 sec,
