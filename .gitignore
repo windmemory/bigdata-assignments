@@ -2,4 +2,4 @@ wc/
 PMIStripes/
 PMIPairs/
 .DS_Store
-
+target/
