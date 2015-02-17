@@ -40,7 +40,7 @@ The Stripes Solution ran 5190 sec, the Pairs solution ran 27284 sec.
 After I've improved the algorithm of the second mapper, the Pairs solution ran 12656 sec.
 
 ####Question 7
-The stripes solution ran 2576 sec,
+The stripes solution ran 2576 sec, and the improved Pairs solution ran 10603 sec.
 
 ####Question 8
 The total number of output is 38210424, that means there are 19105212 distinct pairs that I extracted. 
@@ -74,7 +74,5 @@ The three words has the highest PMI with "love" are:
 This assignment is kind of suffering for me. I developed on my own Mac first, for the reason that my Mac runs faster than the cluster and VM. After I finish the code and ran perfectly on my Mac, I moved to the cluster, then I found that because the environment is different, the way I read side data doesn't work on the cluster. This is a disaster for me. I have to rewrite the code that read the side data. 
 
 Besides that, I am not very familiar with java, instead, I am familiar with c, c++, objective-c, swift. So this week for me is like "learning java within a week". Because new to java, so many code is not wrote in best practice, I think this might be the reason that my code doesn't run very fast. And I am wondering how to write the code, so the code could finish the job within 5 minutes. It feels like using hadoop, at least on local machine and the cluster, is not faster than just normal programming. I really want to learn some tricks to make hadoop more efficient.
-
-My code running the big input file needs several hours, so I don't have enough time to run the code without combiner.
 
 But still, I feel that I really learned a lot. Love this class!
