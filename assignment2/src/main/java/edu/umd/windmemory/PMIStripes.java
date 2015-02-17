@@ -121,39 +121,68 @@ public class PMIStripes extends Configured implements Tool {
     private static final HMapStIW MAP = new HMapStIW();
     private static final Text KEY = new Text();
 
-    @Override
-    public void map(LongWritable key, Text line, Context context)
+    // @Override
+    // public void map(LongWritable key, Text line, Context context)
+    //     throws IOException, InterruptedException {
+    //     String text = line.toString();
+    //     String[] rawterms = text.split("\\s+");
+    //     ArrayList<String> terms = new ArrayList<String>();
+    //     HashSet<String> set = new HashSet<String>();
+    //     String pair;
+    //     for (int i = 0; i < rawterms.length; i++) {
+    //       if (rawterms[i].length() < 1) continue;
+    //       set.add(rawterms[i]);
+    //     }
+    //     Iterator it = set.iterator();
+    //     while (it.hasNext()) {
+    //       terms.add((String)it.next());
+    //     }
+
+    //     for (int i = 0; i < terms.size(); i++) {
+    //       String term = terms.get(i);
+
+    //       MAP.clear();
+
+    //       for (int j = 0; j < terms.size(); j++) {
+    //         if (j == i)
+    //           continue;
+    //         MAP.increment(terms.get(j));
+    //       }
+
+    //       KEY.set(term);
+    //       context.write(KEY, MAP);
+    //     }
+    // }
+  
+  @Override
+      public void map(LongWritable key, Text line, Context context) 
         throws IOException, InterruptedException {
         String text = line.toString();
         String[] rawterms = text.split("\\s+");
-        ArrayList<String> terms = new ArrayList<String>();
-        HashSet<String> set = new HashSet<String>();
-        String pair;
+        Arrays.sort(rawterms);
+        String prei = " ", prej;
+
         for (int i = 0; i < rawterms.length; i++) {
-          if (rawterms[i].length() < 1) continue;
-          set.add(rawterms[i]);
-        }
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-          terms.add((String)it.next());
-        }
-
-        for (int i = 0; i < terms.size(); i++) {
-          String term = terms.get(i);
-
           MAP.clear();
-
-          for (int j = 0; j < terms.size(); j++) {
-            if (j == i)
+          if (prei.equals(rawterms[i]) || rawterms[i].length() == 0) continue;
+          prej = " ";
+          for (int j = i + 1; j < rawterms.length; j++) {
+            if (rawterms[i].equals(rawterms[j])) {
+              i = j;
               continue;
-            MAP.increment(terms.get(j));
+            } else if (rawterms[j].length() == 0 || prej.equals(rawterms[j])) continue;
+          MAP.increment(rawterms[j]);
+          prej = rawterms[j];
           }
-
-          KEY.set(term);
+          KEY.set(rawterms[i]);
           context.write(KEY, MAP);
+          prei = rawterms[i];
+          
         }
-    }
+
+      }
   }
+
 
   private static class MySecondCombiner extends Reducer<Text, HMapStIW, Text, HMapStIW> {
     @Override

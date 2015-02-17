@@ -149,30 +149,22 @@ public class PMIPairs extends Configured implements Tool {
   			throws IOException, InterruptedException {
   			String text = line.toString();
   			String[] rawterms = text.split("\\s+");
-  			ArrayList<String> terms = new ArrayList<String>();
-  			HashSet<String> set = new HashSet<String>();
-  			String pair;
-  			for (int i = 0; i < rawterms.length; i++) {
-  				if (rawterms[i].length() < 1) continue;
-  				set.add(rawterms[i]);
-  			}
-  			Iterator it = set.iterator();
-  			while (it.hasNext()) {
-  				terms.add((String)it.next());
-  			}
+  			Arrays.sort(rawterms);
+  			String prei = " ", prej;
 
-  			for (int i = 0; i < terms.size(); i++) {
-  				for (int j = 0; j < terms.size(); j++) {
-  					if (i != j) {
-  						PAIR.set(terms.get(i), terms.get(j));
-  						// pair = terms.get(i) + "," + terms.get(j);
-  						// if (hash.containsKey(pair))
-  						// 	hash.put(pair, hash.get(pair) + 1);
-  						// else 
-  						// 	hash.put(pair, 1);
-  						context.write(PAIR, NUM);
-  					}
+  			for (int i = 0; i < rawterms.length; i++) {
+  				if (prei.equals(rawterms[i]) || rawterms[i].length() == 0) continue;
+  				prej = " ";
+  				for (int j = i + 1; j < rawterms.length; j++) {
+  					if (rawterms[i].equals(rawterms[j])) {
+  						i = j;
+  						continue;
+  					} else if (rawterms[j].length() == 0 || prej.equals(rawterms[j])) continue;
+					PAIR.set(rawterms[i], rawterms[j]);
+					context.write(PAIR, NUM);
+					prej = rawterms[j];
   				}
+  				prei = rawterms[i];
   			}
 
   		}
