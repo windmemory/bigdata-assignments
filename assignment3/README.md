@@ -21,38 +21,6 @@ The answer is:
 Query: outrageous fortune AND
 40366757	The Wheel of Fortune	:For other uses, see Wheel of Fortune. The Wheel of Fortune
 
-Query: white rose AND
-5436417	Gothic architecture	Gothic architecture is a style of architecture  used in West
-14846271	Ford Mustang	The Ford Mustang is a very popular American sports car built by the
-17561297	Mount St. Helens	Mount St. Helens is a volcano in the U.S. state of Washington.
-19509048	French Revolution	The French Revolution was a revolution in France from 1789 to
-22085823	Aaliyah	Aaliyah Dana Haughton (better known simply as Aaliyah; January 16, 1979
-23517650	National emblem	A national emblem is an official symbol for a country. It can be
-23873968	Rose	, making them dicots. The rose is a type of flowering shrub. Its name comes
-25001465	Kate Moss	Katherine Moss (born 16 January 1974), better known as Kate Moss, is a
-28040092	Ya pear	The Ya pear or Chinese white pear is a type of pear. It is found in nort
-40672426	Albatross	Albatrosses are large seabirds which belong to the biological family D
-46384450	The Beatles (album)	The Beatles is a 1968 album by the band of the same name, Th
-48804501	Torres Strait	Torres Strait is the narrow sea between Australia's Cape York and
-57307441	Komodo dragon	The Komodo dragon (Varanus komodoensis)  is a species of lizard th
-65297127	Bhagwan Shree Rajneesh	Rajneesh (11 December 1931 – 19 January 1990) was an  Ind
-65437322	Nail art	Nail art is a creative activity that draws pictures or designs fingerna
-68015430	Petrushka	Petrushka is a ballet burlesque in four scenes. Igor Stravinsky wrote
-75132176	Manchester City Council	Manchester City Council is the local government for Manc
-85922306	Benedict Arnold	Benedict Arnold V ( – 14 June 1801) was a general during the Ame
-93831441	Robert Fortune	Robert Fortune (16 September 1812 – 13 April 1880) was a Scottish
-94256922	Thumbelina	"Thumbelina" () is a fairy tale by Hans Christian Andersen. The story
-95112640	Uluṟu-Kata Tjuṯa National Park	Uluṟu-Kata Tjuṯa National Park is a national park
-95236980	Le Spectre de la rose	Le Spectre de la rose () is a short ballet. It is about a
-98946428	Timbers Army	Timbers Army is a group of hardcore supporters of the Portland Timb
-99395864	The Labors of Herakles	The Labors of Herakles is a series of tasks performed by
-104762377	List of Medal of Honor recipients	The Medal of Honor was created during the Amer
-105462373	The Ballet of the Nuns	The Ballet of the Nuns is the first ballet blanc and the
-108387870	Buster Crabbe	Clarence Linden "Buster" Crabbe II (February 7, 1908 – April 23, 1
-109516650	Jumbo	Jumbo (about Christmas 1860 – September 15, 1885) was the first internatio
-117672403	Bardsey Island	Bardsey Island (), is a small island  off the coast of Wales. Bar
-119171169	Rosa 'Veilchenblau'	'Veilchenblau' is a  hybrid rose cultivar that was bred in G
-
 Query: means deceit AND
 19334430	StarCraft	StarCraft is a real-time strategy game for the PC. It was created in 1
 111918585	List of figures in Greek mythology	This is a list of gods, goddesses, people and
