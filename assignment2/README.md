@@ -37,7 +37,7 @@ The three words has the highest PMI with "love" are:
 ####Question 6
 The Stripes Solution ran 5190 sec, the Pairs solution ran 27284 sec. 
 
-After I've improved the algorithm of the second mapper, the Pairs solution ran 12656 sec.
+After I've improved the algorithm of the second mapper, the Pairs solution ran 12656 sec, the Stripes solution ran 2968 sec.
 
 ####Question 7
 The stripes solution ran 2576 sec, and the improved Pairs solution ran 10603 sec, improved stripes solution ran 1370 sec.
@@ -75,4 +75,6 @@ This assignment is kind of suffering for me. I developed on my own Mac first, fo
 
 Besides that, I am not very familiar with java, instead, I am familiar with c, c++, objective-c, swift. So this week for me is like "learning java within a week". Because new to java, so many code is not wrote in best practice, I think this might be the reason that my code doesn't run very fast. And I am wondering how to write the code, so the code could finish the job within 5 minutes. It feels like using hadoop, at least on local machine and the cluster, is not faster than just normal programming. I really want to learn some tricks to make hadoop more efficient.
 
-But still, I feel that I really learned a lot. Love this class!
+From this assignment I learnt that the algorithm really matters! At first, my second mapper contains like 3 loops, then I revised the code and eliminate the loops to one loop, then I ran the code, the time reduced significantly. I think, as I get more and more familiar with java, I could make the map reduce code more efficient.
+
+Finally, I feel that I really learnt a lot. Love this class!
