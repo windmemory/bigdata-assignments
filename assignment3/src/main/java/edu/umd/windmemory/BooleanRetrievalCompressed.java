@@ -37,6 +37,7 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.VIntWritable;
 import org.apache.hadoop.io.MapFile;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.util.Tool;
@@ -118,30 +119,36 @@ public class BooleanRetrievalCompressed extends Configured implements Tool {
 
   private Set<Integer> fetchDocumentSet(String term) throws IOException {
     Set<Integer> set = new TreeSet<Integer>();
-
-    for (PairOfInts pair : fetchPostings(term)) {
-      set.add(pair.getLeftElement());
+    int skip = 0;
+    int curDoc = 0;
+    for (VIntWritable num : fetchPostings(term)) {
+      if (skip == 1) {
+        curDoc += num.get();
+        set.add(curDoc);
+      }
+      skip ^= 1;
     }
 
     return set;
   }
 
-  private ArrayListWritable<PairOfInts> fetchPostings(String term) throws IOException {
+  private ArrayListWritable<VIntWritable> fetchPostings(String term) throws IOException {
     Text key = new Text();
-    PairOfWritables<IntWritable, ArrayListWritable<PairOfInts>> value =
-        new PairOfWritables<IntWritable, ArrayListWritable<PairOfInts>>();
+    ArrayListWritable<VIntWritable> value =
+        new ArrayListWritable<VIntWritable>();
 
     key.set(term);
     index.get(key, value);
 
-    return value.getRightElement();
+    return value;
   }
 
   private String fetchLine(long offset) throws IOException {
     collection.seek(offset);
     BufferedReader reader = new BufferedReader(new InputStreamReader(collection));
-
-    return reader.readLine();
+    String rawLine = reader.readLine();
+    if (rawLine.length() > 80) rawLine = rawLine.substring(0, 80);
+    return rawLine;
   }
 
   private static final String INDEX = "index";
