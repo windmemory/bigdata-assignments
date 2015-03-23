@@ -22,8 +22,8 @@ import org.apache.hadoop.io.SequenceFile.Reader;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.fs.Path;
 
-public class Sequentialextract {
-  private Sequentialextract() {}
+public class ExtractTopPersonalizedPageRankNodes {
+  private ExtractTopPersonalizedPageRankNodes() {}
 
   private static final String INPUT = "input";
   private static final String TOP = "top";
@@ -54,7 +54,7 @@ public class Sequentialextract {
       System.out.println("args: " + Arrays.toString(args));
       HelpFormatter formatter = new HelpFormatter();
       formatter.setWidth(120);
-      formatter.printHelp(Sequentialextract.class.getName(), options);
+      formatter.printHelp(ExtractTopPersonalizedPageRankNodes.class.getName(), options);
       ToolRunner.printGenericCommandUsage(System.out);
       System.exit(-1);
     }
