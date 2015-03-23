@@ -1,7 +1,25 @@
 ##Assignment 4
 
+####Running Code
+
+hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.BuildPersonalizedPageRankRecords \
+   -input sample-large.txt -output windmemory-PageRankRecords -numNodes 1458 -sources 9470136,9300650
+
+hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.PartitionGraph \
+   -input windmemory-PageRankRecords -output windmemory-PageRank/iter0000 -numPartitions 5 -numNodes 1458
+
+hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.RunPersonalizedPageRankBasic \
+   -base windmemory-PageRank -numNodes 1458 -start 0 -end 20 -sources 9470136,9300650
+
+hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.Sequentialextract \
+-input windmemory-PageRank/iter0020 -top 10 -sources 9470136,9300650
+
+
+
 ####Status
 I've finished the assignment. I chose regular map reduce without in-mapper combiner. I changed the PageRankNode class. I change the pagerank attribute into array and add an attribute with name "curPoint" which indicate that the current source the program is calculating. I didn't change the input and output type of pagerank getter and setter which makes it easier for me to transform from single source to multiple sources. 
+
+Because I set the array of pageranks size of 10, so my program can only calculate multiple nodes that less than ten. 
 
 ####Answer
 
