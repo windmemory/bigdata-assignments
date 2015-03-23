@@ -301,7 +301,7 @@ public class RunPersonalizedPageRankBasic extends Configured implements Tool {
             // + sumLogProbs(p, (float) (Math.log(missingMass) - Math.log(nodeCnt)));
 
         if (nid.get() == Integer.parseInt(sources[i])) {
-          p = sumLogProbs((float) Math.log(ALPHA), (float) Math.log(missingMass[i]) + (float) Math.log(1.0f - ALPHA));
+          p = sumLogProbs((float) Math.log(ALPHA), sumLogProbs(p, (float) Math.log(missingMass[i])) + (float) Math.log(1.0f - ALPHA));
         } else {
           p += (float) Math.log(1.0f - ALPHA);
         }
