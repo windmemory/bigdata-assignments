@@ -25,30 +25,33 @@ Because I set the array of pageranks size of 10, so my program can only calculat
 
 ```
 Source: 9470136
-0.38293 9470136
-0.09284 7992850
-0.08464 7891871
-0.07948 10208640
-0.06509 9427340
-0.06509 8747858
-0.03495 8702415
-0.03137 8669492
-0.02213 7970234
-0.01669 8846238
+0.38857 9470136
+0.09418 7992850
+0.08586 7891871
+0.08063 10208640
+0.06603 9427340
+0.06603 8747858
+0.03546 8702415
+0.03183 8669492
+0.02246 7970234
+0.01693 8846238
 
 Source: 9300650
-0.44118 9300650
-0.08992 10765057
-0.08775 9074395
-0.07500 10687744
-0.07500 8832646
-0.07500 9621997
-0.01536 10448801
-0.01492 9785148
-0.01492 10369305
-0.01492 11890488
+0.44688 9300650
+0.09108 10765057
+0.08888 9074395
+0.07597 10687744
+0.07597 8832646
+0.07597 9621997
+0.01556 10448801
+0.01511 9785148
+0.01511 10369305
+0.01511 11890488
 ```
+
 
 ####Something
 
-I don't know why, but when I compare my answer with my classmates, I got bigger weight of source node and smaller weight of the others. I checked my code and the fomular, can't find anything wrong with my code. Although the weights are different, but the rank is still the same. 
+I went to Alaska, here is the Aurora Timelapse link, hope you enjoy it. 
+
+https://youtu.be/bC-PqdlqweU
