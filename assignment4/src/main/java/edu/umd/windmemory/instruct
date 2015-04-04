@@ -17,8 +17,6 @@ hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.RunPers
 hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.ExtractTopPersonalizedPageRankNodes \
    -input windmemory-PageRank/iter0020 -top 10 -sources 9627181,9370233,10207721
 
-hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.Sequentialextract \
-   -input windmemory-PageRank/iter0020 -top 10 -sources 9627181,9370233,10207721
 
 
 
@@ -45,5 +43,5 @@ hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.RunPers
 
 
 
-hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.Sequentialextract \
+hadoop jar target/assignment4-1.0-SNAPSHOT-fatjar.jar edu.umd.windmemory.ExtractTopPersonalizedPageRankNodes \
 -input windmemory-PageRank/iter0020 -top 10 -sources 9470136,9300650
