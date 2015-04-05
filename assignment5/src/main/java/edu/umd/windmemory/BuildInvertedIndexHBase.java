@@ -29,6 +29,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -125,7 +126,7 @@ public class BuildInvertedIndexHBase extends Configured implements Tool {
   private static class MyTableReducer extends TableReducer<Text, PairOfInts, ImmutableBytesWritable> {
     public void reduce(Text key, Iterable<PairOfInts> values, Context context) 
       throws IOException, InterruptedException {
-        Put put = new(Bytes.toBytes(key.toString()));
+        Put put = new Put(Bytes.toBytes(key.toString()));
         for (PairOfInts val : values) {
           put.add(CF, Bytes.toBytes(val.getLeftElement()), Bytes.toBytes(val.getRightElement()));
         }
@@ -204,7 +205,7 @@ public class BuildInvertedIndexHBase extends Configured implements Tool {
     LOG.info("Tool name: " + BuildInvertedIndexHBase.class.getSimpleName());
     LOG.info(" - input path: " + inputPath);
     LOG.info(" - output path: " + outputTable);
-    LOG.info(" - num reducers: " + reduceTasks);
+    // LOG.info(" - num reducers: " + reduceTasks);
 
     Job job = Job.getInstance(getConf());
     job.setJobName(BuildInvertedIndexHBase.class.getSimpleName());
