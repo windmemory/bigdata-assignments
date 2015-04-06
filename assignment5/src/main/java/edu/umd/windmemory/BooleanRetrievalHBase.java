@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
+import java.util.NavigableMap;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -41,20 +42,31 @@ import org.apache.hadoop.io.MapFile;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Get;
+import org.apache.hadoop.hbase.client.HConnection;
+import org.apache.hadoop.hbase.client.HConnectionManager;
+import org.apache.hadoop.hbase.client.HTableInterface;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.util.Bytes;
 
 import tl.lin.data.array.ArrayListWritable;
 import tl.lin.data.pair.PairOfInts;
 import tl.lin.data.pair.PairOfWritables;
 
 public class BooleanRetrievalHBase extends Configured implements Tool {
-  private MapFile.Reader index;
+  private HTableInterface table;
   private FSDataInputStream collection;
   private Stack<Set<Integer>> stack;
 
   private BooleanRetrievalHBase() {}
 
   private void initialize(String indexPath, String collectionPath, FileSystem fs) throws IOException {
-    index = new MapFile.Reader(new Path(indexPath + "/part-r-00000"), fs.getConf());
+    // index = new MapFile.Reader(new Path(indexPath + "/part-r-00000"), fs.getConf());
+    Configuration conf = getConf();
+    Configuration hbaseConfig = HBaseConfiguration.create(conf);
+    HConnection hbaseConnection = HConnectionManager.createConnection(hbaseConfig);
+    table = hbaseConnection.getTable(indexPath);
     collection = fs.open(new Path(collectionPath));
     stack = new Stack<Set<Integer>>();
   }
@@ -127,14 +139,24 @@ public class BooleanRetrievalHBase extends Configured implements Tool {
   }
 
   private ArrayListWritable<PairOfInts> fetchPostings(String term) throws IOException {
-    Text key = new Text();
+    // Text key = new Text();
     PairOfWritables<IntWritable, ArrayListWritable<PairOfInts>> value =
         new PairOfWritables<IntWritable, ArrayListWritable<PairOfInts>>();
 
-    key.set(term);
-    index.get(key, value);
+    // key.set(term);
+    Get get = new Get(Bytes.toBytes(term));
+    Result result = table.get(get);
+    ArrayListWritable<PairOfInts> arraylist = new ArrayListWritable<PairOfInts>();
+    NavigableMap<byte[], byte[]> familyMap = result.getFamilyMap(Bytes.toBytes("p"));
 
-    return value.getRightElement();
+    int counter = 0;
+    for(byte[] bQunitifer : familyMap.keySet()) {
+        PairOfInts e = new PairOfInts();
+        e.set(Bytes.toInt(bQunitifer), Bytes.toInt(familyMap.get(bQunitifer)));
+        arraylist.add(e);
+    }
+
+    return arraylist;
   }
 
   private String fetchLine(long offset) throws IOException {
@@ -185,6 +207,9 @@ public class BooleanRetrievalHBase extends Configured implements Tool {
       System.out.println("gzipped collection is not seekable: use compressed version!");
       System.exit(-1);
     }
+
+    Configuration conf = getConf();
+    conf.addResource(new Path("/etc/hbase/conf/hbase-site.xml"));
 
     FileSystem fs = FileSystem.get(new Configuration());
 
