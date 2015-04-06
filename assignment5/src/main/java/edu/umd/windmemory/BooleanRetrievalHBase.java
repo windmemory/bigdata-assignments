@@ -48,6 +48,7 @@ public class BooleanRetrievalHBase extends Configured implements Tool {
   private void initialize(String indexPath, String collectionPath, FileSystem fs) throws IOException {
     
     Configuration conf = getConf();
+    conf.addResource(new Path("/etc/hbase/conf/hbase-site.xml"));
     Configuration hbaseConfig = HBaseConfiguration.create(conf);
     HConnection hbaseConnection = HConnectionManager.createConnection(hbaseConfig);
     table = hbaseConnection.getTable(indexPath);
@@ -193,7 +194,7 @@ public class BooleanRetrievalHBase extends Configured implements Tool {
     }
 
     Configuration conf = getConf();
-    conf.addResource(new Path("/etc/hbase/conf/hbase-site.xml"));
+    
 
     FileSystem fs = FileSystem.get(new Configuration());
 
